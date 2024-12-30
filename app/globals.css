@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.title {
+  font-size: 48px;
+  font-weight: 800;
+}
+.extra-space {
+  padding: 35px;
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
