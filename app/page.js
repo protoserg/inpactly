@@ -1,13 +1,16 @@
 import ButtonLogin from "@/components/ButtonLogin";
+import ListItem from "@/components/listitem";
 export default function Home() {
   const isLoggedin = true;
   const name = "Sergio";
+
   return (
     <main>
       {/* HEADER */}
       <section className="bg-base-200 ">
+        {/* Base goes from 100-500 and 100 is usually the background */}
         <div className="max-w-3xl mx-auto  flex justify-between  items-center px-8 py-2">
-          <div className="font-bold">Saas</div>
+          <div className="font-bold">SaaS</div>
           <div className="space-x-4 max-md:hidden">
             <a className="link link-hover">Pricing</a>
             <a className="link link-hover">Features</a>
@@ -50,69 +53,41 @@ export default function Home() {
               /month
             </div>
           </div>
+
           <ul className="space-y-2 ">
-            <li className="flex gap-2 items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="size-4 text-green-600"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Collect customer feedback
-            </li>
-            <li className="flex gap-2 items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="size-4 text-green-600"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Unlimited boards
-            </li>
-            <li className="flex gap-2 items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="size-4 text-green-600"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Admin dashboard
-            </li>
-            <li className="flex gap-2 items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="size-4 text-green-600"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              24/7 support
-            </li>
+            {[
+              "Collect Customer Feedback",
+              "Unlimited boards",
+              "Admin dashboard",
+              "24/7 support", //using this array to create a new array with map
+            ].map((priceItem) => {
+              //it takes the array above, and uses it with the components below
+
+              return (
+                <li className="flex gap-2 items-center" key={priceItem}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="size-4 text-green-600"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {priceItem}
+                  {/* This is basically using 1st array for each of it's items and adding the 'checkmark' + priceItem */}
+                </li>
+              );
+            })}
           </ul>
-          <ButtonLogin isLoggedin={isLoggedin} name={name} />
+          <ButtonLogin
+            isLoggedin={isLoggedin}
+            name={name}
+            extraStyle="w-full"
+          />
         </div>
       </section>
     </main>
