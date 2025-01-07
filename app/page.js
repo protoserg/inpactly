@@ -90,6 +90,22 @@ export default function Home() {
           />
         </div>
       </section>
+      {/* FAQ */}
+      <section className="bg-base-200 ">
+        {/* Base goes from 100-500 and 100 is usually the background */}
+        <div className="py-32 px-8 max-w-3xl mx-auto">
+          <p className="text-sm uppercase font-medium text-center text-primary">
+            FAQ
+          </p>
+          <h2 className="text-3xl lg:text-4xl font-extrabold mb-12 text-center">
+            Frequently Asked Questions
+          </h2>
+
+          {/* <ul>{[{
+            question: "Q" , answer: "A"
+          }].map((qa)=> ())}</ul> */}
+        </div>
+      </section>
     </main>
   );
 }
