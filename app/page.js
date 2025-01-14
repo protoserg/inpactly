@@ -1,10 +1,11 @@
 import ButtonLogin from "@/components/ButtonLogin";
+import ButtonLogout from "@/components/ButtonLogout";
 import FAQListItem from "@/components/FAQListItem";
 import productDemo from "./productDemo.jpeg";
 import Image from "next/image";
-export default function Home() {
-  const isLoggedin = true;
-  const name = "Sergio";
+import { auth } from "@/auth";
+export default async function Home() {
+  const session = await auth();
 
   return (
     <main>
@@ -23,7 +24,8 @@ export default function Home() {
           </div>
 
           <div>
-            <ButtonLogin isLoggedin={isLoggedin} name={name} />
+            <ButtonLogin session={session} />
+            <ButtonLogout session={session} />
           </div>
         </div>
       </section>
@@ -47,7 +49,7 @@ export default function Home() {
             products your customers will love.
           </div>
           <div className=" mt-8">
-            <ButtonLogin isLoggedin={isLoggedin} name={name} />
+            <ButtonLogin session={session} />
           </div>
         </div>
       </section>
@@ -99,11 +101,7 @@ export default function Home() {
               );
             })}
           </ul>
-          <ButtonLogin
-            isLoggedin={isLoggedin}
-            name={name}
-            extraStyle="w-full"
-          />
+          <ButtonLogin session={session} extraStyle="w-full" />
         </div>
       </section>
       {/* FAQ */}
