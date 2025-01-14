@@ -25,7 +25,6 @@ export default async function Home() {
 
           <div>
             <ButtonLogin session={session} />
-            <ButtonLogout session={session} />
           </div>
         </div>
       </section>
