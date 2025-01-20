@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import connectMongo from "@/libs/mongoose";
 import User from "@/models/User";
-//user was giving me shit for no reason, asshole
 import Board from "@/models/Board";
+
 export async function POST(req) {
   try {
     const body = await req.json();
