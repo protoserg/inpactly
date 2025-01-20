@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
-
+import { useRouter } from "next/router";
 const FormNewBoard = () => {
   const router = useRouter();
   const [name, setName] = useState("");
@@ -12,8 +12,8 @@ const FormNewBoard = () => {
 
     try {
       const data = await axios.post("/api/board", { name });
-
-      console.log("Board created:", data);
+      setName("");
+      router.refresh();
     } catch (error) {
       console.error("Error creating board:", error);
       // Add error handling UI here
