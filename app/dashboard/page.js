@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import connectMongo from "@/libs/mongoose";
 import User from "@/models/User";
 import Board from "@/models/Board";
-import { useRouter } from "next/navigation";
+
 async function getUser() {
   const session = await auth();
 

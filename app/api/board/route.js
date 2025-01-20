@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import connectMongo from "@/libs/mongoose";
-import User from "../../../models/User"; // Changed to relative path
-import Board from "../../../models/Board"; // Changed to relative path
-
+import User from "@/models/User";
+import Board from "@/models/Board";
 export async function POST(req) {
   try {
     const body = await req.json();
