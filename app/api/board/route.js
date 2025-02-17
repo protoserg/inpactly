@@ -23,13 +23,18 @@ export async function POST(req) {
     }
     await connectMongo();
 
-    const user = await User.findById(session.user.id);
+    // Create the board first
     const board = await Board.create({
-      userId: user._id,
+      userId: session.user.id,
       name: body.name,
     });
-    user.boards.push(board._id);
-    await user.save();
+
+    // Update the user's boards array using updateOne to avoid validation issues
+    await User.updateOne(
+      { _id: session.user.id },
+      { $push: { boards: board._id } }
+    );
+
     return NextResponse.json(board);
   } catch (e) {
     return NextResponse.json({ error: e.message }, { status: 500 });
