@@ -14,6 +14,10 @@ const boardSchema = new mongoose.Schema({
     default: "New Board",
     ref: "Name",
   },
+  isPublic: {
+    type: Boolean,
+    default: true, // Make boards public by default
+  },
 });
 
 export default mongoose.models.Board || mongoose.model("Board", boardSchema);
