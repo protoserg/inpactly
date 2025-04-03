@@ -1,20 +1,27 @@
-const CardBoardLink = (boardId) => {
+"use client";
+import { toast } from "react-hot-toast";
+
+const CardBoardLink = ({ boardId }) => {
   const boardLink = `${
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
       : "https://inpactly.com"
   }/b/${boardId}`;
+  const copyLink = () => {
+    navigator.clipboard.writeText(boardLink);
+    toast.success("Link copied to clipboard");
+  };
   return (
-    <div className="bg-base-100 rounded-3xl text-sm px-4 py-2.5 shadow-xl flex items-center justify-between">
+    <div className="bg-base-100 rounded-2xl text-sm px-4 py-2.5 shadow-xl flex items-center justify-between max-w-96">
       <p className="truncate text-ellipsis overflow-hidden">{boardLink}</p>
-      <button className="btn  btn-sm btn-neutral btn-square">
+      <button className="btn  btn-sm btn-neutral btn-square" onClick={copyLink}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="size-6"
+          className="size-5"
         >
           <path
             strokeLinecap="round"
