@@ -4,7 +4,6 @@ import FormNewBoard from "@/components/FormNewBoard";
 import { auth } from "@/auth";
 import connectMongo from "@/libs/mongoose";
 import User from "@/models/User";
-import Board from "@/models/Board";
 
 async function getUser() {
   const session = await auth();
@@ -15,7 +14,7 @@ async function getUser() {
 
 export default async function Dashboard() {
   const user = await getUser();
-  console.log(Board);
+
   return (
     <main className="bg-base-200 min-h-screen">
       <section className="bg-base-100">
