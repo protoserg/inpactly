@@ -22,7 +22,13 @@ export async function POST(req) {
       );
     }
     await connectMongo();
-
+    const user = await User.findById(session.user.id);
+    if (!user.hasAccess) {
+      return NextResponse.json(
+        { error: "Please Subscribe First" },
+        { status: 403 }
+      );
+    }
     // Create the board first
     const board = await Board.create({
       userId: session.user.id,

@@ -4,6 +4,7 @@ import FormNewBoard from "@/components/FormNewBoard";
 import { auth } from "@/auth";
 import connectMongo from "@/libs/mongoose";
 import User from "@/models/User";
+// eslint-disable-next-line no-unused-vars
 import Board from "@/models/Board";
 import ButtonCheckout from "@/components/ButtonCheckout";
 async function getUser() {
@@ -20,7 +21,8 @@ export default async function Dashboard() {
     <main className="bg-base-200 min-h-screen">
       <section className="bg-base-100">
         <div className="max-w-5xl mx-auto  px-5 py-3 flex justify-between"></div>
-        <ButtonCheckout />
+        {!user.hasAccess && <ButtonCheckout />}
+
         <ButtonLogout />
       </section>
       <section className="max-w-5xl mx-auto px-5 py-12 space-y-12">
