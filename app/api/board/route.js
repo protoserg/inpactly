@@ -29,6 +29,12 @@ export async function POST(req) {
         { status: 403 }
       );
     }
+    if (!user.hasAccess) {
+      return NextResponse.json(
+        { error: "Please Subscribe First" },
+        { status: 403 }
+      );
+    }
     // Create the board first
     const board = await Board.create({
       userId: session.user.id,
@@ -62,9 +68,17 @@ export async function DELETE(req) {
     if (!session) {
       return NextResponse.json({ error: "Not authorized" }, { status: 401 });
     }
-    await Board.deleteOne({ _id: boardId, userId: session?.user?.id });
 
     const user = await User.findById(session?.user?.id);
+
+    if (!user.hasAccess) {
+      return NextResponse.json(
+        { error: "Please Subscribe First" },
+        { status: 403 }
+      );
+    }
+    await Board.deleteOne({ _id: boardId, userId: session?.user?.id });
+
     user.boards = user.boards.filter((id) => id.toString() !== boardId);
     await user.save();
 
