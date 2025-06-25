@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import Stripe from "stripe";
 import connectMongo from "@/libs/mongoose";
 import User from "@/models/User";
+import { connect } from "mongoose";
 export async function POST(req) {
   try {
     // verify hook from stripe
@@ -26,6 +27,15 @@ export async function POST(req) {
 
       user.hasAccess = true;
       user.customerId = data.object.customer;
+
+      await user.save();
+    } else if (type === "customer.subscription.deleted") {
+      //meow
+      await connectMongo();
+      const user = await User.findOne({
+        customerId: data.object.customer,
+      });
+      user.hasAccess = false;
 
       await user.save();
     }

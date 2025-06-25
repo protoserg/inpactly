@@ -29,12 +29,7 @@ export async function POST(req) {
         { status: 403 }
       );
     }
-    if (!user.hasAccess) {
-      return NextResponse.json(
-        { error: "Please Subscribe First" },
-        { status: 403 }
-      );
-    }
+
     // Create the board first
     const board = await Board.create({
       userId: session.user.id,
